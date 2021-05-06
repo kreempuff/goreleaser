@@ -59,6 +59,17 @@ brews:
     # Default is empty.
     download_strategy: CurlDownloadStrategy.
 
+    # A string you can use to specify the spec argument of the url function for a
+    # formula. It may conflict with `download_strategy` if you use `download_strategy`
+    # and `formula_url_spec: :using => <strategy>`
+    # Ex:
+    # formula_url_spec: |-
+    #   tag:      "1.2.3",
+    #   revision: "db8e4de5b2d6653f66aea53094624468caad15d2"
+    #
+    # https://rubydoc.brew.sh/Formula#url-class_method
+    formula_url_spec: ""
+
     # Allows you to add a custom require_relative at the top of the formula template
     # Default is empty
     custom_require: custom_download_strategy

@@ -249,6 +249,7 @@ func dataFor(ctx *context.Context, cfg config.Homebrew, cl client.Client, artifa
 		PostInstall:      cfg.PostInstall,
 		Tests:            split(cfg.Test),
 		DownloadStrategy: cfg.DownloadStrategy,
+		FormulaUrlSpec:   cfg.FormulaUrlSpec,
 		CustomRequire:    cfg.CustomRequire,
 		CustomBlock:      split(cfg.CustomBlock),
 	}

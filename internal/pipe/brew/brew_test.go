@@ -173,6 +173,15 @@ func TestRunPipe(t *testing.T) {
 
 			ctx.Config.Brews[0].CustomBlock = `head "https://github.com/caarlos0/test.git"`
 		},
+		"formula_url_spec": func(ctx *context.Context) {
+			ctx.TokenType = context.TokenTypeGitHub
+			ctx.Config.Brews[0].Tap.Owner = "test"
+			ctx.Config.Brews[0].Tap.Name = "test"
+			ctx.Config.Brews[0].Homepage = "https://github.com/goreleaser"
+			ctx.Config.Brews[0].FormulaUrlSpec = `using:    :git,
+      tag:      "1.2.3",
+      revision: "db8e4de5b2d6653f66aea53094624468caad15d2"`
+		},
 		"default_gitlab": func(ctx *context.Context) {
 			ctx.TokenType = context.TokenTypeGitLab
 			ctx.Config.Brews[0].Tap.Owner = "test"

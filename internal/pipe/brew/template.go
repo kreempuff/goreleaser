@@ -11,6 +11,7 @@ type templateData struct {
 	Caveats          []string
 	Plist            string
 	DownloadStrategy string
+	FormulaUrlSpec   config.FormulaUrlSpec
 	Install          []string
 	PostInstall      string
 	Dependencies     []config.HomebrewDependency
@@ -53,6 +54,9 @@ class {{ .Name }} < Formula
   if OS.mac? && Hardware::CPU.intel?
     url "{{ .MacOSAmd64.DownloadURL }}"
     {{- if .DownloadStrategy }}, :using => {{ .DownloadStrategy }}{{- end }}
+    {{- with .FormulaUrlSpec }},
+      {{ . }}
+    {{- end }}
     sha256 "{{ .MacOSAmd64.SHA256 }}"
   end
   {{- end }}
@@ -60,6 +64,9 @@ class {{ .Name }} < Formula
   if OS.mac? && Hardware::CPU.arm?
     url "{{ .MacOSArm64.DownloadURL }}"
     {{- if .DownloadStrategy }}, :using => {{ .DownloadStrategy }}{{- end }}
+    {{- with .FormulaUrlSpec }},
+      {{ . }}
+    {{- end }}
     sha256 "{{ .MacOSArm64.SHA256 }}"
   end
   {{- end }}
@@ -68,6 +75,9 @@ class {{ .Name }} < Formula
   if OS.linux? && Hardware::CPU.intel?
     url "{{ .LinuxAmd64.DownloadURL }}"
     {{- if .DownloadStrategy }}, :using => {{ .DownloadStrategy }}{{- end }}
+    {{- with .FormulaUrlSpec }},
+      {{ . }}
+    {{- end }}
     sha256 "{{ .LinuxAmd64.SHA256 }}"
   end
   {{- end }}
@@ -76,6 +86,9 @@ class {{ .Name }} < Formula
   if OS.linux? && Hardware::CPU.arm? && !Hardware::CPU.is_64_bit?
     url "{{ .LinuxArm.DownloadURL }}"
     {{- if .DownloadStrategy }}, :using => {{ .DownloadStrategy }}{{- end }}
+    {{- with .FormulaUrlSpec }},
+      {{ . }}
+    {{- end }}
     sha256 "{{ .LinuxArm.SHA256 }}"
   end
   {{- end }}
@@ -84,6 +97,9 @@ class {{ .Name }} < Formula
   if OS.linux? && Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
     url "{{ .LinuxArm64.DownloadURL }}"
     {{- if .DownloadStrategy }}, :using => {{ .DownloadStrategy }}{{- end }}
+    {{- with .FormulaUrlSpec }},
+      {{ . }}
+    {{- end }}
     sha256 "{{ .LinuxArm64.SHA256 }}"
   end
   {{- end }}

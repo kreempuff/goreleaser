@@ -87,6 +87,10 @@ func (r Repo) String() string {
 	return r.Owner + "/" + r.Name
 }
 
+// FormulaUrlSpec is a string you can provide for the spec argument
+// of the url function of a Formula
+type FormulaUrlSpec string
+
 // Homebrew contains the brew section.
 type Homebrew struct {
 	Name             string               `yaml:",omitempty"`
@@ -106,6 +110,7 @@ type Homebrew struct {
 	SkipUpload       string               `yaml:"skip_upload,omitempty"`
 	DownloadStrategy string               `yaml:"download_strategy,omitempty"`
 	URLTemplate      string               `yaml:"url_template,omitempty"`
+	FormulaUrlSpec   FormulaUrlSpec       `yaml:"formula_url_spec,omitempty"`
 	CustomRequire    string               `yaml:"custom_require,omitempty"`
 	CustomBlock      string               `yaml:"custom_block,omitempty"`
 	IDs              []string             `yaml:"ids,omitempty"`
